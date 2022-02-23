@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="app1">click to app1</button> |
+    <button id="app2">click to app2</button>
+  </body>
+  <script src="./init.js"></script>
+  <script src="./proxySandbox.js"></script>
+  <script>
+    ;((w) => {
+      const Apps = [
+        {
+          name: 'app1',
+          appWindow: createHackWindow({ app1: 'app1' })
+        },
+        {
+          name: 'app2',
+          appWindow: createHackWindow({ app2: 'app2' })
+        }
+      ]
+
+      handleRegister(Apps)
+    })(window)
+  </script>
+  <!-- <script type="module">
+    import a from './test.js';
+    console.log(a, '123123')
+  </script> -->
+  <script type="module">
+    import { loadScript, removeScript } from './load.js'
+    ;(() => {
+      /* ---------------- 模拟路由 -------------------------------*/
+      let btn1 = document.getElementById('app1')
+      let btn2 = document.getElementById('app2')
+      // 第一种 通过点击事件
+      btn1.onclick = async function () {
+        await loadScript('./app1.js')
+        await removeScript('./app2.js')
+        handleRouteClick('app1')
+      }
+      btn2.onclick = async function () {
+        await loadScript('./app2.js')
+        await removeScript('./app1.js')
+        handleRouteClick('app2')
+      }
+    })()
+  </script>
+</html>
