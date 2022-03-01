@@ -18,7 +18,7 @@ function fetchGH(method, params, c) {
         headers: {
           'Content-Type': 'application/json',
           'User-Agent': 'PostmanRuntime/7.29.0',
-          Authorization: 'token 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'
+          Authorization: config.token
         },
         body: JSON.stringify(params),
         ...c
