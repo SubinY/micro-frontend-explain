@@ -2,10 +2,10 @@ name: Modify Material Manifest
 
 on:
   push:
-    branches: [master]
+    branches: [dev]
 
   pull_request:
-    branches: [master]
+    branches: [dev]
 
 env:
   TEMP_TOKEN: ${{ secrets.TEMP_TOKEN }}
