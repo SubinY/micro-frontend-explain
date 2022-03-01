@@ -75,7 +75,7 @@ async function start() {
     })
     console.log('修改成功')
   } catch (error) {
-    console.log('修改失败')
+    console.log('修改失败:' + error)
   }
 }
 
