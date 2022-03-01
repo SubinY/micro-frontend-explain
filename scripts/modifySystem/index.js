@@ -18,7 +18,7 @@ function fetchGH(method, params, c) {
         headers: {
           'Content-Type': 'application/json',
           'User-Agent': 'PostmanRuntime/7.29.0',
-          Authorization: config.token
+          Authorization: 'token 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'
         },
         body: JSON.stringify(params),
         ...c
@@ -33,7 +33,7 @@ function fetchGH(method, params, c) {
           console.error('更新失败，资源不存在或者远程action secret token已失效')
           reject()
         }
-        console.log(d, method)
+        console.log(d, config.token, method)
         resolve({
           sha: d.sha,
           content: d.content
